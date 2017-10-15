@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'users/new' => 'users#new'
+
+  get '/messages' => 'users#messages'
+
+  post '/messages' => 'users#create_message'
+
+  post 'users' => 'users#create'  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
