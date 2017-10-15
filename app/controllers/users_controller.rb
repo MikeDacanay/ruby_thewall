@@ -21,15 +21,13 @@ class UsersController < ApplicationController
 	end
 
 	def create_message
-		user = params[:message][:user] 
-		params[:message][:user] = User.where(user_name: user)[0]
-		m = Message.new(message_params)
-		if m.save
-			redirect_to '/messages'
-		else
-			flash[:errors]=m.errors.full_messages
-			redirect_to '/messages'
-		end
+		@name = User.find_by(user_name: session[:user])
+		@m = @name.messages.new(message_params)
+		@m.save
+		if @m.errors
+			flash[:errors]=@m.errors.full_messages
+		end			
+		redirect_to '/messages'
 	end
 
 	private
@@ -38,6 +36,6 @@ class UsersController < ApplicationController
 		end
 
 		def message_params
-			params.require(:message).permit(:message, :user)
+			params.require(:message).permit(:message)
 		end
 end

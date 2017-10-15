@@ -1,10 +1,13 @@
 <h1>Welcome <%= session[:user] %></h1>
+<% if flash[:errors]%>
+	<%=flash[:errors]%>
+<%end%>
 
 <h2>Post a Message</h2>
 <form action='/messages' method = 'post'>
 	<input type="hidden" name="authenticity_token" value="VxLCoqvap2IdbFioGuFfTadt+I5jVDPKxwg+6/1wPZIXUHTPyQzAq6Bat6MXlSF9HYrxQN3aXSZWZqJPMf2HOw==" />
 	<input style = 'height: 100px' type = 'textarea' name='message[message]'>
-	<input type='hidden' value='<%=session[:user]%>' name='message[user]'>
+	<input type='hidden' value='<%=session[:user]%>' name='message[user_id]'>
 	<input type='submit' value = 'Post a Message'>
 </form>
 
