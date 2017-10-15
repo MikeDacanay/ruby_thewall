@@ -16,6 +16,12 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def logout
+		session[:user] = nil
+		print session[:user]
+		redirect_to '/users/new' 
+	end	
+
 	def messages
 		@messages = Message.all.order("id DESC")
 	end

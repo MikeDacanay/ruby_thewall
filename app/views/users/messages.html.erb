@@ -1,6 +1,9 @@
 <h1>Welcome <%= session[:user] %></h1>
+<a href='/users/new'> Logout </a>
 <% if flash[:errors]%>
-	<%=flash[:errors]%>
+	<%flash[:errors].each do |error|%>
+		<p><%=error%></p>
+	<%end%>
 <%end%>
 
 <h2>Post a Message</h2>

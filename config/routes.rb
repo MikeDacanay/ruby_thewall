@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/messages' => 'users#messages'
 
+  get '/logout' => 'users#logout'
+
   post '/messages' => 'users#create_message'
 
   post 'users' => 'users#create'  
